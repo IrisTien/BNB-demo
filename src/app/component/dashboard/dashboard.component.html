@@ -1,0 +1,89 @@
+<h2 class="dashboard-title">
+  Select below options to generate data visualization.
+</h2>
+<div class="select-container">
+  <div class="select-element">
+    <form clrForm>
+      <clr-toggle-wrapper>
+        <input
+          type="checkbox"
+          clrToggle
+          [(ngModel)]="showTitle"
+          name="showTitle"
+        />
+        <label>Show Chart Title</label>
+      </clr-toggle-wrapper>
+      <clr-input-container *ngIf="showTitle">
+        <label>Chart Title</label>
+        <input clrInput name="title" [(ngModel)]="title" />
+      </clr-input-container>
+      <ng-container *ngFor="let option of options">
+        <clr-select-container>
+          <label>{{ option.title }}</label>
+          <select clrSelect name="option.field" [(ngModel)]="option.selection">
+            <ng-container *ngFor="let item of option.selectValues">
+              <option value="{{ item.value }}">{{ item.label }}</option>
+            </ng-container>
+          </select>
+        </clr-select-container>
+      </ng-container>
+      <clr-input-container>
+        <label>Metric Axis Title</label>
+        <input clrInput name="yAxis" [(ngModel)]="yAxisTitle" />
+      </clr-input-container>
+      <clr-select-container>
+        <label>{{ timeRange.title }}</label>
+        <select clrSelect name="timeRange" [(ngModel)]="timeRange.selection">
+          <ng-container *ngFor="let item of timeRange.selectValues">
+            <option value="{{ item.value }}">{{ item.label }}</option>
+          </ng-container>
+        </select>
+      </clr-select-container>
+      <ng-container *ngIf="showDateTimePicker()">
+        <clr-date-container>
+          <label>From</label>
+          <input type="date" name="fromDate" [(clrDate)]="fromDate" />
+        </clr-date-container>
+        <clr-date-container>
+          <label>To</label>
+          <input type="date" name="toDate" [(clrDate)]="toDate" />
+        </clr-date-container>
+      </ng-container>
+
+      <div class="generate-btn">
+        <button class="btn btn-primary" (click)="generateChart()">
+          Generate
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="visual-container" #visualContainer></div>
+  <!-- <ng-container *ngFor="let option of options">
+    <div class="select-element">
+      <clr-dropdown>
+        <button class="dropdown-toggle btn btn-link" clrDropdownTrigger>
+          {{ option.title }}
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+          <ng-container *ngFor="let item of option.selectValues">
+            <div
+              clrDropdownItem
+              (click)="
+                option.title = item.label;
+                option.onChange ? option.onChange(option.field, item.value) : ''
+              "
+            >
+              {{ item.label }}
+            </div>
+          </ng-container>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </ng-container>
+  <div class="select-element">
+    <button class="btn btn-primary" (click)="generateChart()">
+      Generate
+    </button>
+  </div> -->
+</div>

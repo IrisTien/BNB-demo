@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./scss/app.scss";
+
+html {
+  font-size: 24px;
+}
+
+.select-container {
+  .clr-control-container {
+    width: 150px;
+    flex: 0 0 auto;
+  }
+}
