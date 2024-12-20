@@ -1,10 +1,24 @@
+<div class="notification-container">
+  <clr-alert
+    [clrAlertType]="'sucess'"
+    class="copy-msg"
+    *ngIf="copied"
+    (clrAlertClosedChange)="onCopyMsgClose()"
+  >
+    <clr-alert-item>
+      <span class="alert-text">
+        IFrame snippet is copied to clipboard.
+      </span>
+    </clr-alert-item>
+  </clr-alert>
+</div>
 <h2 class="dashboard-title">
   Select below options to generate data visualization.
 </h2>
 <div class="select-container">
   <div class="select-element">
     <form clrForm>
-      <clr-toggle-wrapper>
+      <clr-toggle-wrapper [hidden]="true">
         <input
           type="checkbox"
           clrToggle
@@ -27,10 +41,10 @@
           </select>
         </clr-select-container>
       </ng-container>
-      <clr-input-container>
+      <!-- <clr-input-container>
         <label>Metric Axis Title</label>
         <input clrInput name="yAxis" [(ngModel)]="yAxisTitle" />
-      </clr-input-container>
+      </clr-input-container> -->
       <clr-select-container>
         <label>{{ timeRange.title }}</label>
         <select clrSelect name="timeRange" [(ngModel)]="timeRange.selection">
@@ -54,10 +68,50 @@
         <button class="btn btn-primary" (click)="generateChart()">
           Generate
         </button>
+        <!-- <clr-signpost>
+          <button class="btn" (click)="generateChart()" clrSignpostTrigger>
+            Copy iframe
+          </button>
+          <clr-signpost-content
+            class="iframe-signpost-content"
+            [clrPosition]="'bottom-middle'"
+            *clrIfOpen
+          >
+            <textarea
+              placeholder="Describe something"
+              class="clr-textarea"
+            ></textarea>
+          </clr-signpost-content>
+        </clr-signpost> -->
       </div>
     </form>
   </div>
-  <div class="visual-container" #visualContainer></div>
+  <div class="visual-container">
+    <p *ngIf="iframeSnippet">
+      <span class="refresh-msg">{{ refreshMessage }}</span
+      ><clr-icon
+        shape="refresh"
+        class="refresh-btn"
+        (click)="reloadIFrame()"
+      ></clr-icon>
+    </p>
+    <div class="visual" #visualContainer></div>
+    <div class="clipboard-container" *ngIf="iframeSnippet">
+      <textarea
+        placeholder="Describe something"
+        class="clr-textarea"
+        [(ngModel)]="iframeSnippet"
+      ></textarea>
+      <button class="btn btn-primary" (click)="copyIFrame()">
+        Copy iframe
+      </button>
+    </div>
+    <!-- <iframe
+      src="http://10.111.24.229:3000/d/kztSL9aZk/dashboard-trend-cpu?orgId=1&from=1576488449753&to=1576574849753"
+      width="100%"
+      height="100%"
+    ></iframe> -->
+  </div>
   <!-- <ng-container *ngFor="let option of options">
     <div class="select-element">
       <clr-dropdown>

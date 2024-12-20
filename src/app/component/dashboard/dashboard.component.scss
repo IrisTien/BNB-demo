@@ -3,6 +3,17 @@
   margin: 10px 20px;
 }
 
+.notification-container {
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  width: 97vw;
+  .copy-msg {
+    width: 500px;
+    margin: auto;
+  }
+}
+
 .dashboard-title {
   text-align: center;
 }
@@ -11,12 +22,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: 20px 30px 20px 0;
   .select-element {
     label {
       min-width: 120px;
     }
     flex: auto;
-    min-width: 400px;
+    min-width: 270px;
     max-width: 600px;
     margin: 0 20px;
   }
@@ -24,7 +36,36 @@
     width: 100%;
     height: 60vh;
     flex: auto;
+    .visual {
+      height: 100%;
+    }
   }
+}
+
+// .iframe-signpost-content {
+//   width: 300px;
+//   .clr-textarea {
+//     width: 100%;
+//   }
+// }
+
+.clipboard-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .clr-textarea {
+    flex: auto;
+    margin-right: 10px;
+  }
+}
+
+.refresh-msg {
+  margin-right: 7px;
+}
+
+.refresh-btn {
+  cursor: pointer;
+  color: #0077b8;
 }
 
 .generate-btn {
